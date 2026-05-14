@@ -12,9 +12,12 @@ public class Advert {
     private String location;
     private String imageUri;
     private String createdAt;
+    private double latitude;
+    private double longitude;
 
     public Advert(int id, String postType, String category, String name, String phone,
-                  String description, String date, String location, String imageUri, String createdAt) {
+                  String description, String date, String location, String imageUri,
+                  String createdAt, double latitude, double longitude) {
         this.id = id;
         this.postType = postType;
         this.category = category;
@@ -25,6 +28,14 @@ public class Advert {
         this.location = location;
         this.imageUri = imageUri;
         this.createdAt = createdAt;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Advert(int id, String postType, String category, String name, String phone,
+                  String description, String date, String location, String imageUri,
+                  String createdAt) {
+        this(id, postType, category, name, phone, description, date, location, imageUri, createdAt, 0.0, 0.0);
     }
 
     public int getId() {
@@ -65,5 +76,13 @@ public class Advert {
 
     public String getCreatedAt() {
         return createdAt;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 }

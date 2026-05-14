@@ -45,7 +45,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Category" />
+            android:text="Category"
+            android:textColor="#222222"
+            android:layout_marginBottom="4dp" />
 
         <Spinner
             android:id="@+id/spinnerCategory"
@@ -74,6 +76,7 @@
             android:layout_height="100dp"
             android:gravity="top"
             android:hint="Description"
+            android:inputType="textMultiLine"
             android:layout_marginBottom="10dp" />
 
         <EditText
@@ -87,7 +90,17 @@
             android:id="@+id/editLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location"
+            android:hint="Tap to choose location"
+            android:focusable="false"
+            android:clickable="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btnCurrentLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GET CURRENT LOCATION"
+            android:textAllCaps="false"
             android:layout_marginBottom="16dp" />
 
         <Button

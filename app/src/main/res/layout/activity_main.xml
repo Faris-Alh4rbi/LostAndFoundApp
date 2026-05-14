@@ -29,6 +29,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Show All Lost and Found Items"
+        android:textAllCaps="false"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Map Radius Search"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#222222"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editRadius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter radius in km, e.g. 10"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnShowMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SHOW ON MAP"
         android:textAllCaps="false" />
 
 </LinearLayout>

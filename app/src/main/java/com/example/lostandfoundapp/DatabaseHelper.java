@@ -5,14 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
 
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "lost_found_db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String TABLE_NAME = "adverts";
 
@@ -26,6 +25,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_LOCATION = "location";
     private static final String COL_IMAGE_URI = "imageUri";
     private static final String COL_CREATED_AT = "createdAt";
+    private static final String COL_LATITUDE = "latitude";
+    private static final String COL_LONGITUDE = "longitude";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,21 +45,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_DATE + " TEXT, " +
                 COL_LOCATION + " TEXT, " +
                 COL_IMAGE_URI + " TEXT, " +
-                COL_CREATED_AT + " TEXT)";
+                COL_CREATED_AT + " TEXT, " +
+                COL_LATITUDE + " REAL, " +
+                COL_LONGITUDE + " REAL)";
 
         db.execSQL(createTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
     public boolean insertAdvert(String postType, String category, String name, String phone,
                                 String description, String date, String location,
-                                String imageUri, String createdAt) {
+                                String imageUri, String createdAt,
+                                double latitude, double longitude) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -72,6 +75,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COL_LOCATION, location);
         values.put(COL_IMAGE_URI, imageUri);
         values.put(COL_CREATED_AT, createdAt);
+        values.put(COL_LATITUDE, latitude);
+        values.put(COL_LONGITUDE, longitude);
 
         long result = db.insert(TABLE_NAME, null, values);
         db.close();
@@ -98,7 +103,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         cursor.getString(cursor.getColumnIndexOrThrow(COL_DATE)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COL_LOCATION)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COL_IMAGE_URI)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(COL_CREATED_AT))
+                        cursor.getString(cursor.getColumnIndexOrThrow(COL_CREATED_AT)),
+                        cursor.getDouble(cursor.getColumnIndexOrThrow(COL_LATITUDE)),
+                        cursor.getDouble(cursor.getColumnIndexOrThrow(COL_LONGITUDE))
                 );
 
                 advertList.add(advert);
@@ -134,7 +141,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         cursor.getString(cursor.getColumnIndexOrThrow(COL_DATE)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COL_LOCATION)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COL_IMAGE_URI)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(COL_CREATED_AT))
+                        cursor.getString(cursor.getColumnIndexOrThrow(COL_CREATED_AT)),
+                        cursor.getDouble(cursor.getColumnIndexOrThrow(COL_LATITUDE)),
+                        cursor.getDouble(cursor.getColumnIndexOrThrow(COL_LONGITUDE))
                 );
 
                 advertList.add(advert);
@@ -170,7 +179,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(cursor.getColumnIndexOrThrow(COL_DATE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COL_LOCATION)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COL_IMAGE_URI)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(COL_CREATED_AT))
+                    cursor.getString(cursor.getColumnIndexOrThrow(COL_CREATED_AT)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(COL_LATITUDE)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(COL_LONGITUDE))
             );
         }
 

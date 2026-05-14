@@ -1,28 +1,27 @@
-Lost and Found App
-This project is for SIT305 Task 7.1P. It is an Android mobile app developed in Java using SQLite.
+# Lost and Found Map App - SIT305 Task 9.1P
 
-Features
-- Create a lost or found advert
-- Store advert data using SQLite
-- Upload an image for each advert
-- Add item name, phone number, description, date, location, and category
-- Automatically save a posting date/time stamp
-- View all lost and found adverts
-- Filter adverts by category
-- View full advert details
-- Remove an advert after the item has been returned
+This Android app allows users to create lost and found adverts and view item locations on a Google Map.
 
-Technologies Used
-- Android Studio
-- Java
-- XML
-- SQLite
+## Features
 
-Main Files
-- MainActivity.java
-- CreateAdvertActivity.java
-- ShowItemsActivity.java
-- ItemDetailActivity.java
-- DatabaseHelper.java
-- Advert.java
-- AdvertAdapter.java
+- Create Lost or Found adverts
+- Save item name, phone, description, date, category, image, and location
+- Use current device location
+- Show lost and found items on Google Map
+- Radius-based search to show only items within X km of the user's current location
+- Uses SQLite for local storage
+- Uses Google Maps SDK for Android
+- Uses Google Places API for location search
+
+## Setup
+
+This project requires a Google Maps API key.
+
+Create or edit `local.properties` and add:
+
+MAPS_API_KEY=your_api_key_here  
+PLACES_API_KEY=your_api_key_here
+
+## Author
+
+Faris Alharbi
